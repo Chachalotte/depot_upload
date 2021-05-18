@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les travaux{% endblock %}
+
+{% block body %}
+<style>
+.thread-post {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: rgb(74, 85, 104, 0.66); /* For distinguishing every other post */;
+  box-shadow: inset rgb(255 255 255 / 10%) 0px 1px 0px, rgb(0 0 0 / 12%) 0px 2px 2px, rgb(0 0 0 / 20%) 0px 4px 14px;
+
+  border-top: 5px solid #046582;
+
+}
+.thread-post:nth-child(even) {
+  background-color: #eee /* For distinguishing every other post */;
+  background-color: rgb(80, 80, 100, 0.66); /* For distinguishing every other post */;
+  box-shadow: inset rgb(255 255 255 / 10%) 0px 1px 0px, rgb(0 0 0 / 12%) 0px 2px 2px, rgb(0 0 0 / 20%) 0px 4px 14px;
+
+}
+body {
+    background-color: #171e24!important;
+    background-image: url('{{ asset('images/travail_bg.jpg') }}');
+    color:white;
+}
+a {
+    color: grey;
+}
+h1, h2 {width: 90vw; margin-right: auto; margin-left: auto; padding: 15px; font-size: 1.5em }
+
+
+h1 {font-size: 2em!important; }
+</style>
+
+<div class="example-wrapper container-fluid" style="margin-top: 10vh; background-image:url('{{ asset('images/travail_bg.jpg') }}')">
+
+    {% for message in app.flashes('success') %}
+            <h1 class="alert alert-success">
+                {{ message }}
+            </h1>
+        {% endfor %}
+    <h1 style="font-size: 250%; text-align:center;">Liste des travaux</h1>
+    <form method="POST" style="background: none;">
+    <p>
+    <label class="floatLabel">Recherche :</label>
+    <input type="text" name="rechercher" style="color:black;">
+        <button type="submit" class="btn btn-primary">Rechercher !</button>
+
+    </p>
+    </form>
+    <div class="row">
+
+        <button class="btn btn-primary offset-lg-5 col-lg-2"><a href="{{ path('app_upload') }}">Ajouter un travail</a></button>
+
+    </div> <!-- Fin du row -->
+ 
+    {% for categorys in category %}
+            
+    <div class="category row" id="thread">    
+    
+    <hr class="center-star">
+    <h2> {{ categorys.categoryName }}</h2>
+
+        {% for travau in travaux %}
+
+            {% if travau.categorie == categorys.categoryName %}
+            
+            
+            <div class="col-4 thread-post" style="height: 650px; text-align: center;">
+            <h3>{{travau.titre}}</h3> <br>
+           
+             {% set extension = travau.travail|split('.') %}
+
+                {% if extension[1] == "mp4" or extension[1] == "avi" %} <!-- On vérifie que c'est un fichier vidéo qui est retourné -->
+
+                <video controls style="width: 200px; height: 200px;">
+
+                {% set url = travau.travail|split('.') %}
+
+                <source src="{{ asset('uploads/' ~ travau.travail ~'') }}"
+                            type="video/mp4">
+                </video>
+
+                {% endif %}
+
+                {% if extension[1] == "png" or extension[1] == "gif" or extension[1] == "jpeg"  %} <!-- On vérifie que c'est un fichier image qui est retourné -->
+      
+                <div style="margin-left: auto; margin-right: auto; width: 200px; height: 200px; background-image:url('{{ asset('uploads/' ~ travau.travail ~'') }}'); background-position: center; background-size:cover; "></div>
+
+                {% endif %}
+                <p>publié le {{travau.date}} par {{travau.user.pseudo}}</p>
+                
+                <a href="{{ path('app_like', {'id': travau.id}) }}" class="btn btn-link js-like" style="background: white;">
+
+                    {% if app.user and travau.isLikedByUser(app.user) %}
+                        <i class="fas fa-thumbs-up"></i>
+                    {% else %}
+                        <i class="far fa-thumbs-up"></i>
+
+                    {% endif %}
+
+                    <span class="js-likes"> {{ travau.likes | length }} </span> 
+                    <span class="js-label"> J'aime </span> <br>
+                    
+                </a>
+
+
+                <div style="margin-right:auto; margin-left:auto,;">
+                <button> <a href="{{ path('travaux_unique', {travaux: travau.id}) }}">En apprendre plus sur ce travail</a>
+                </div>
+
+
+                </div>
+
+                {% endif %}
+
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js
+"></script>
+
+<script>
+
+    function onClickBtnLike(event){
+
+        event.preventDefault();
+
+        const url = this.href;
+        const spanCount = this.querySelector('span.js-likes');
+        const icone = this.querySelector('i');
+
+        axios.get(url).then(function (response) {
+            spanCount.textContent = response.data.likes;
+
+            if (icone.classList.contains('fas')) {
+                icone.classList.replace('fas', 'far');
+            } else {
+                icone.classList.replace('far', 'fas');
+            }
+        }).catch(function (error) {
+            if (error.response.status === 403) {
+                window.alert('Vous ne pouvez pas likez un article sans être connecté!')
+            } else {
+                window.alert('Une erreur s\'est produite, veuillez réessayer plus tard.')
+            }
+        })
+    }
+
+    document.querySelectorAll('a.js-like').forEach(function(link){
+        link.addEventListener('click', onClickBtnLike)
+    })
+</script>
+
+{% endblock %}
+
+

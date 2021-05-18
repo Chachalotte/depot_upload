@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de profil{% endblock %}
+
+{% block body %}
+<style>
+    .thread-post {
+    padding: 10px;
+    padding-left: 35px;
+    border-bottom: 1px solid #ddd;
+    background-color: rgb(74, 85, 104, 0.66); /* For distinguishing every other post */;
+    box-shadow: inset rgb(255 255 255 / 10%) 0px 1px 0px, rgb(0 0 0 / 12%) 0px 2px 2px, rgb(0 0 0 / 20%) 0px 4px 14px;
+    width: 90%;
+    border-top: 5px solid #046582;
+    margin-right: auto;
+    }
+
+    body {
+        background-color: #171e24!important;
+        color:white;
+        padding-left: 30px;
+    }
+    a {
+        color: grey;
+    }
+    h1, h2 {width: 90vw; font-size: 1.5em; padding-bottom: 30px; }
+
+
+    h1 {font-size: 2em!important; }
+</style>
+
+<div class="thread-post">
+
+<div class="thread-post container-fluid row" style="margin-top: 100px;">
+
+<h2 class="col-12" style="font-size: 250%">Pseudo : {{app.user.pseudo}}</h2>
+
+
+<div class="thread-left col-6" style="margin-top: 100px;">
+
+        <p class="col-12" >Prénom :{{app.user.prenom}}</p>
+        <p class="col-12" >Nom :{{app.user.nom}}</p>
+
+    {% if app.user.genre == "F" and app.user.avatar == "" %}
+
+        <img width="300" height="300" style="border-radius: 150px; border: 5px solid white;" src="{{ asset('images/girl.png') }}">
+    
+    {% endif %}
+
+    {% if app.user.genre == "H" and app.user.avatar == "" %}
+
+        <img width="300" height="300" style="border-radius: 150px; border: 5px solid white;" src="{{ asset('images/man.png') }}">
+
+    {% endif %}
+
+</div> <!-- fermeture div gauche -->
+
+<div class="thread-right col-6" style="margin-top: 100px;">
+
+    <span>Liste de vos travaux : </br></br></span><br><br>
+    <ul>
+
+    {% for travau in travaux %}
+
+    {% if app.user.id == travau.user.id %}
+    <li><a href="{{ path('travaux_unique', {travaux: travau.id}) }}">{{ travau.titre }}</a></li>
+    {% endif %}
+    {% endfor %}
+    </ul>
+
+
+</div>
+  
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+<h1>Coucou! C'est ici que tu peux valider ton compte étudiant.</h1>
+
+<p>
+    Merci de vérifier ton compte avec ce lien ! <br><br>
+    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
+    Mais attention, celui-ci expire dans {{ expiresAt|date('g') }} heure(s), alors dépêche toi !
+</p>
+
+<p>
+    Cordialement,
+
+    L'équipe administrative.
+</p>

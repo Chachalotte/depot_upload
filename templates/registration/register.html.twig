@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+
+    {{ form_start(form, { attr: { 'accept-charset' : 'utf-8' }}) }}
+  	<h2>Inscription </h2>
+	
+    <p>
+          {{ form_label(form.genre) }}
+		  {{ form_label(form.genre, '', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.genre) }}
+          {{ form_errors(form.genre) }}
+        </p>
+        <p>
+          {{ form_label(form.pseudo) }}
+		  {{ form_label(form.pseudo, 'Pseudo*', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.pseudo) }}
+          {{ form_errors(form.pseudo) }}
+        </p>
+		<p>
+          {{ form_label(form.prenom) }}
+		  {{ form_label(form.prenom, 'Prénom*', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.prenom) }}
+          {{ form_errors(form.prenom) }}
+        </p>
+		<p>
+          {{ form_label(form.nom) }}
+		  {{ form_label(form.nom, 'Nom*', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.nom) }}
+          {{ form_errors(form.nom) }}
+        </p>
+		<p>
+          {{ form_label(form.email) }}
+		  {{ form_label(form.email, 'Email*', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.email) }}
+          {{ form_errors(form.email) }}
+        </p>
+		<p>
+          {{ form_label(form.plainPassword) }}
+		  {{ form_label(form.plainPassword, 'Mot de passe*', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.plainPassword) }}
+          {{ form_errors(form.plainPassword) }}
+        </p>	
+        <p>
+          {{ form_widget(form.send, {'label': "S'inscrire"}) }}
+        </p>
+        {{ form_rest(form) }}
+{{ form_end(form) }}
+{% endblock %}

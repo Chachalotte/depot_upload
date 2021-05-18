@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ForumController!{% endblock %}
+
+{% block body %}
+<style>
+.thread-post {
+  padding: 10px;
+  padding-left: 35px;
+  border-bottom: 1px solid #ddd;
+  background-color: rgb(74, 85, 104, 0.66); /* For distinguishing every other post */;
+  box-shadow: inset rgb(255 255 255 / 10%) 0px 1px 0px, rgb(0 0 0 / 12%) 0px 2px 2px, rgb(0 0 0 / 20%) 0px 4px 14px;
+  width: 90%;
+  border-top: 5px solid #046582;
+  margin-right: auto;
+}
+
+body {
+    background-color: #171e24!important;
+    color:white;
+    padding-left: 30px;
+}
+a {
+    color: grey;
+}
+h1, h2 {width: 90vw; font-size: 1.5em; padding-bottom: 30px; }
+
+
+h1 {font-size: 2em!important; }
+
+</style>
+
+<div class="thread-post container-fluid row" style="margin-top: 100px;">
+
+
+
+  {% for travau in travaux %}
+
+  {{travau.desc}}
+
+  {% endfor %}
+
+<div class="thread-left col-12" style="margin-top: 100px;">
+
+   
+</div> <!-- fermeture div gauche -->
+
+
+</div>
+{% endblock %}

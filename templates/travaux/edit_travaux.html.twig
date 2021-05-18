@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+   {{ form_start(form, { attr: { 'accept-charset' : 'utf-8' }}) }}
+  	<h2>Mettre à jour votre travail </h2>
+		    <p>
+          {{ form_label(form.Titre) }}
+		      {{ form_label(form.Titre, 'Titre', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.Titre) }}
+          {{ form_errors(form.Titre) }}
+        </p>
+		<p>
+          {{ form_label(form.Description) }}
+		  {{ form_label(form.Description, 'Description', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.Description) }}
+          {{ form_errors(form.Description) }}
+        </p>	
+		<p>
+          {{ form_label(form.Lien_1) }}
+		  {{ form_label(form.Lien_1, 'Lien n°1', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.Lien_1) }}
+          {{ form_errors(form.Lien_1) }}
+        </p>
+		    <p>
+          {{ form_label(form.Lien_2) }}
+		      {{ form_label(form.Lien_2, 'Lien n°2', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.Lien_2) }}
+          {{ form_errors(form.Lien_2) }}
+        </p>
+
+
+        <p>
+          {{ form_widget(form.send, {'label': "Modifier votre enquête"}) }}
+        </p>
+        {{ form_rest(form) }}
+{{ form_end(form) }}
+{% endblock %}

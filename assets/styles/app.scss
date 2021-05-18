@@ -1,0 +1,422 @@
+// assets/styles/global.scss
+
+// customize some Bootstrap variables
+$primary: darken(#428bca, 20%);
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
+
+/* =Variables
+----------------------------------------------------------------------------- */
+$dark-blue:                #204056;
+$light-blue:               #59A1C9;
+$aqua:                     #39D1B4;
+$salmon:                   #F65A5B;
+
+// Grayscale
+$white:                    #fff;
+$black:                    #000;
+$black-10:                 darken(#fff, 10%);
+$black-20:                 darken(#fff, 20%);
+$black-30:                 darken(#fff, 30%);
+$black-40:                 darken(#fff, 40%);
+$black-50:                 darken(#fff, 50%);
+$black-60:                 darken(#fff, 60%);
+$black-70:                 darken(#fff, 70%);
+$black-80:                 darken(#fff, 80%);
+$black-90:                 darken(#fff, 90%);
+
+// STYLE DU HR //
+
+hr{
+  
+  border: 0;
+  height: 1px;
+  width: 95%;
+  position: relative;
+  margin: 30px auto;
+  
+  
+  &.center-ball{
+    background: $aqua;
+    
+    &:before{
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: $aqua;
+      display: inline-block;
+      border: 2px solid $aqua;
+      @include border-radius(50%);
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      margin: 0 0 0 -3px;
+    }
+  }
+  
+  &.center-diamond{
+    background: $aqua;
+    
+    &:before{
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: $aqua;
+      display: inline-block;
+      border: 2px solid $aqua;
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      margin: 0 0 0 -3px;
+      transform:rotate(45deg);
+      -ms-transform:rotate(45deg); /* IE 9 */
+      -webkit-transform:rotate(45deg); /* Opera, Chrome, and Safari */
+    }
+  }
+  
+  &.center-square{
+    background: $aqua;
+    
+    &:before{
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: $aqua;
+      display: inline-block;
+      border: 2px solid $aqua;
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      margin: 0 0 0 -3px;
+    }
+  }
+  
+  &.center-star{
+    background: $aqua;
+    
+    &:before{
+      content: "★";
+      color: $aqua;
+      display: inline-block;
+      position: absolute;
+      top: 0px;
+      left: 50%;
+      margin: 0 0 0 -3px;
+      font-size: 15px;
+      line-height: 0;
+      text-shadow: 0 0 3px lighten($black-20, 5%);
+    }
+  }
+}
+
+
+
+body {
+    margin : 0;
+    font-size: 2em;
+    height: 100vh;
+}
+
+.home {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.droite_accueil, .gauche_accueil { 
+
+    width: 50vw;
+}
+
+.droite_accueil 
+
+{ 
+    color: red;
+}
+
+.gauche_accueil 
+
+{
+    color: blue;
+}
+/**************************/
+/*     03. Navigation     */
+/**************************/
+.navbar-custom {
+	padding-top: 0.375rem;
+	padding-bottom: 0.375rem;
+	background-color: #113448;
+	box-shadow: 0 0.0625rem 0.375rem 0 rgba(0, 0, 0, 0.1);
+	font: 600 0.875rem/0.875rem "Open Sans", sans-serif;
+	transition: all 0.2s;
+  height: 10vh;
+}
+
+.navbar-custom .navbar-brand {
+	font-size: 0;
+}
+
+.navbar-custom .navbar-brand.logo-image img {
+    width: 3.0625rem;
+	height: 2rem;
+	-webkit-backface-visibility: hidden;
+}
+
+.navbar-custom .navbar-brand.logo-text {
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+	font: 700 2.25rem/1.5rem "Montserrat", sans-serif;
+	color: #fff;
+	text-decoration: none;
+}
+
+.navbar-custom .navbar-nav {
+	margin-top: 0.75rem;
+	margin-bottom: 0.5rem;
+}
+
+.navbar-custom .nav-item .nav-link {
+	padding: 0.625rem 0.75rem 0.625rem 0.75rem;
+	color: #fff;
+	text-decoration: none;
+	transition: all 0.2s ease;
+}
+
+.navbar-custom .nav-item .nav-link:hover,
+.navbar-custom .nav-item .nav-link.active {
+	color: #14bf98;
+}
+
+/* Dropdown Menu */
+.navbar-custom .dropdown:hover > .dropdown-menu {
+	display: block; /* this makes the dropdown menu stay open while hovering it */
+	min-width: auto;
+	animation: fadeDropdown 0.2s; /* required for the fade animation */
+}
+
+@keyframes fadeDropdown {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.navbar-custom .dropdown-toggle:focus { /* removes dropdown outline on focus  */
+	outline: 0;
+}
+
+.navbar-custom .dropdown-menu {
+	margin-top: 0;
+	border: none;
+	border-radius: 0.25rem;
+	background-color: #113448;
+}
+
+.navbar-custom .dropdown-item {
+	color: #fff;
+	text-decoration: none;
+}
+
+.navbar-custom .dropdown-item:hover {
+	background-color: #113448;
+}
+
+.navbar-custom .dropdown-item .item-text {
+	font: 600 0.875rem/0.875rem "Open Sans", sans-serif;
+}
+
+.navbar-custom .dropdown-item:hover .item-text {
+	color: #14bf98;
+}
+
+.navbar-custom .dropdown-items-divide-hr {
+	width: 100%;
+	height: 1px;
+	margin: 0.75rem auto 0.75rem auto;
+	border: none;
+	background-color: #b5bcc4;
+	opacity: 0.2;
+}
+/* end of dropdown menu */
+
+.navbar-custom .social-icons {
+	display: none;
+}
+
+.navbar-custom .navbar-toggler {
+	border: none;
+	color: #fff;
+	font-size: 2rem;
+}
+
+.navbar-custom button[aria-expanded='false'] .navbar-toggler-awesome.fas.fa-times{
+	display: none;
+}
+
+.navbar-custom button[aria-expanded='false'] .navbar-toggler-awesome.fas.fa-bars{
+	display: inline-block;
+}
+
+.navbar-custom button[aria-expanded='true'] .navbar-toggler-awesome.fas.fa-bars{
+	display: none;
+}
+
+.navbar-custom button[aria-expanded='true'] .navbar-toggler-awesome.fas.fa-times{
+	display: inline-block;
+	margin-right: 0.125rem;
+}
+
+// Style lié au form //
+
+
+$button: rgba(4, 101, 130, 0.7);
+
+body {  font-size: 1.2em;}
+button {
+  background: $button;
+  box-shadow: 0 3px 0 0 darken($button, 10%);
+  border-radius: 2px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  width: auto;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 1.2em;
+  line-height: 1.6em;
+  margin: 2em 0 0;
+  outline: none;
+  text-shadow: 0 1px red;
+  transition: all 0.2s;
+  display: inline-block
+}
+button a {
+  color: white;
+  transition: all 0.2s;
+  min-height: 100%;
+  min-width: 100%;
+  padding: 45px;
+}
+button a:hover{
+  text-decoration: none;
+  transition: all 0.2s;
+
+}
+button:hover {
+  background: rgba(4, 101, 130,1);
+  text-shadow:0 1px 3px darken($button, 30%);
+}
+
+form {
+  font-family: sans-serif;
+  font-size: 10px;
+  background: #fff;
+  padding: 4em 4em 2em;
+  max-width: 400px;
+  margin: 50px auto 0;
+  box-shadow: 0 0 1em #222;
+  border-radius: 2px;
+  h2 {
+    margin:0 0 50px 0;
+    padding:10px;
+    text-align:center;
+    font-size:30px;
+    color:darken(#e5e5e5, 50%);
+    border-bottom:solid 1px #e5e5e5;
+  }
+  p {
+    margin: 0 0 3em 0;
+    position: relative;
+  }
+  input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    margin:0;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  select{
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    font-size: 1.6em;
+    padding: .8em .5em;
+    border-radius: 2px;
+  }
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="email"]:focus {
+    background: #fff
+  }
+  textarea {
+    width: 100%;
+    height: 120px;
+    font-size: 1.2em;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    font-family: Tahoma, sans-serif;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+  }
+  span {
+    display:block;
+    background: #F9A5A5;
+    padding: 2px 5px;
+    color: #666;
+  }
+  input[type="submit"], button {
+    background: $button;
+    box-shadow: 0 3px 0 0 darken($button, 10%);
+    border-radius: 2px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    font-size: 2em;
+    line-height: 1.6em;
+    margin: 2em 0 0;
+    outline: none;
+    padding: .8em 0;
+    text-shadow: 0 1px #68B25B;
+  }
+  input[type="submit"]:hover, button:hover {
+    background: rgba(148,175,101,1);
+    text-shadow:0 1px 3px darken($button, 30%);
+  }
+
+  label{
+    position: absolute;
+    left: 8px;
+    top: 12px;
+    color: #999;
+    font-size: 16px;
+    display: inline-block;
+    padding: 4px 10px;
+    font-weight: 400;
+    background-color: rgba(255,255,255,0);
+    @include transition(color .3s, top .3s, background-color .8s);
+    &.floatLabel{
+      top: -11px;
+      background-color: rgba(255,255,255,0.8);
+      font-size: 14px;
+    }
+	}
+  
+}
+
+// CSS CUSTOM //
+
+a:hover{
+  color: red;
+  transition-property: color;
+  transition-duration: 4s;
+  transition-delay: 2s;
+}

@@ -1,0 +1,64 @@
+{# templates/travaux/upload_travaux.html.twig #}
+{% extends 'base.html.twig' %}
+{% block title %}Upload de travaux{% endblock %}
+{% block description %}C'est ici que vous pouvez upload vos travaux.{% endblock %}
+{% block body %}
+
+<div class="container">
+  	
+{{ form_start(form, { attr: { 'accept-charset' : 'utf-8' }}) }}
+  	<h2>Formulaire de dépôt </h2>
+		<p>
+          {{ form_label(form.Titre) }}
+		  {{ form_label(form.Titre, 'Titre', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.Titre) }}
+          {{ form_errors(form.Titre) }}
+        </p>
+		    <p>
+          {{ form_label(form.Description) }}
+		      {{ form_label(form.Description, 'Description', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.Description) }}
+          {{ form_errors(form.Description) }}
+        </p>	
+		    <p>
+          {{ form_label(form.Lien_1) }}
+		      {{ form_label(form.Lien_1, 'Lien n°1', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.Lien_1) }}
+          {{ form_errors(form.Lien_1) }}
+        </p>
+		    <p>
+          {{ form_label(form.Lien_2) }}
+		      {{ form_label(form.Lien_2, 'Lien n°2', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.Lien_2) }}
+          {{ form_errors(form.Lien_2) }}
+        </p>
+		<p>
+          {{ form_label(form.upload_file) }}
+		      {{ form_label(form.upload_file, 'PNG / JPG / GIF / MP4 / AVI', {'label_attr': {'class': 'floatLabel'}}) }}
+
+          {{ form_widget(form.upload_file) }}
+          {{ form_errors(form.upload_file) }}
+        </p>
+		<p>
+          {{ form_label(form.categorie) }}
+		      {{ form_label(form.categorie) }}
+
+          {{ form_widget(form.categorie) }}
+          {{ form_errors(form.categorie) }}
+        </p>
+        <p>
+          {{ form_widget(form.send, {'label': "Envoyer votre enquête"}) }}
+        </p>
+        {{ form_rest(form) }}
+{{ form_end(form) }}
+
+
+
+
+
+{% endblock %}
+
